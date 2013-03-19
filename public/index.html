@@ -88,6 +88,7 @@
 	<p>Algorithms proudly copied from <a href="http://rakna.net/">rakna.net</a>. For a specific value refer to <a href="http://rakna.net/berakna/lon-efter-skatt/">l&ouml;n efter skatt</a> and <a href="http://rakna.net/berakna/arbetsgivaravgift/">arbetsgivaravgift</a>. Pension is not included. The source code for this page is available on <a href="https://github.com/gustafsson/swedish-salaries">github</a>.</p>
 	<script language="javascript" type="text/javascript" src="jquery.js"></script>
     <script language="javascript" type="text/javascript" src="jquery.flot.js"></script>
+    <script language="javascript" type="text/javascript" src="jquery.flot.axislabels.js"></script>
 	<script src="yui-min.js"></script>
 	<script type="text/javascript" src="common.js"></script>
 	<script type="text/javascript" src="parishes.js"></script>
@@ -123,7 +124,19 @@
 			d2.push([k, k]);
 			d3.push([k, k+calculate2()]);
 		}
-		$.plot($("#placeholder"), [ { label: 'Employee\'s account', data:d1}, {label:'Quoted salary', data:d2}, {label:'Employer cost', data:d3} ]);
+
+	  	var options = {
+	        xaxes: [{
+	            axisLabel: 'Quoted salary',
+	        }],
+	        yaxes: [{
+	            axisLabel: 'SEK',
+	        }]
+	    };
+
+		$.plot($("#placeholder"),
+			[ { label: 'Employee\'s account', data:d1}, {label:'Quoted salary', data:d2}, {label:'Employer cost', data:d3} ],
+			options);
 
 
 		var d4 = [];
@@ -139,7 +152,9 @@
 			var v = (a2-a1)/(b2-b1);
 			d4.push([k, v >= 1 ? null : v ]);
 		}
-		$.plot($("#placeholder2"), [ { label: 'added kr at employee\'s account per added 1 kr in employer cost', data:d4}]);
+		$.plot($("#placeholder2"),
+			[ { label: 'added kr at employee\'s account per added 1 kr in employer cost', data:d4}],
+			options);
 	}
 
 	plot();
