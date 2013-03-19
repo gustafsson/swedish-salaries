@@ -60,6 +60,8 @@ function hideElement(c) {
     }
 }
 function showElement(d, c) {
+    return;
+    
     if (typeof c === "undefined") {
         c = "block"
     }
@@ -71,6 +73,8 @@ function showElement(d, c) {
     }
 }
 function setElementText(d, c) {
+    return;
+
     var b = document.getElementById(d);
     if (b) {
         b.innerHTML = c
@@ -122,6 +126,8 @@ function fadeOut(b) {
     DoFade(StartFadeAt, b)
 }
 function DoFade(c, b) {
+    return;
+
     if (c >= 0) {
         document.getElementById(b).style.backgroundColor = "#ffff" + FadeSteps[c];
         if (c == 0) {
