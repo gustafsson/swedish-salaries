@@ -1,86 +1,91 @@
-<html>
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="sv">
 <head>
+    <link href="main.css" rel="stylesheet" type="text/css"/>
 	<title>labs.muchdifferent.com - salary fees</title>
 </head>
 <body>
-	<span>
-		<p>For a specific value, refer to rakna.net <a href="http://rakna.net/berakna/lon-efter-skatt/">lon-efter-skatt</a>, and <a href="http://rakna.net/berakna/arbetsgivaravgift/">arbetsgivaravgift</a>. The values plotted are for adults living in VAKSALA, UPPSALA, who are not members of the Swedish church.</p>
-	<div style="display:none">
-	<form onsubmit="calculate(); return false;">
-		<p>
-			<label for="in_salary">Vad har du i lön?</label><br/>
-			<input class="text" id="in_salary" style="" type="text" value="25000"/> kr/mån 
-		</p>
-		<p id="msg_salary" class="msg"/>
-		<p>
-			<label for="in_parish">Vilken församling bor du i?</label><br/>
-			<input class="text" id="in_parish" style="width:300px" type="text" value="VAKSALA, UPPSALA"/>
-		</p>
-		<p id="msg_parish" class="msg"/>
-		<p>
-			<label for="in_year">Vilket inkomstår?</label><br/>
+	<p>NO RESPONSIBILITY IS TAKEN FOR THE ACCURACY OF THE INFORMATION PROVIDED HERE</p>
+	<p>Thanks to <a href="http://rakna.net/">rakna.net</a> for the algorithms. For a specific value refer to <a href="http://rakna.net/berakna/lon-efter-skatt/">l&ouml;n efter skatt</a> and <a href="http://rakna.net/berakna/arbetsgivaravgift/">arbetsgivaravgift</a>.</p>
+	<div id="placeholder" style="width:600px;height:300px;display:inline-block;"></div>
+	<div id="placeholder2" style="width:600px;height:300px;display:inline-block;"></div>
+	<form onsubmit="plot();return false;">
+		<p>Year
 			<select id="in_year" style="">
 				<option selected="selected" value="2013">2013</option>
 				<option value="2012">2012</option>
 				<option value="2011">2011</option>
-			</select>
-			<span class="msg" id="msg_year">&nbsp;</span>
-		</p>
-		<p>
-			<input id="in_church" type="checkbox"/>
-			<!--input checked="checked" id="in_church" type="checkbox"/-->
-			<label for="in_church">Medlem i Svenska kyrkan</label>
-		</p>
-        <p>
-            <label for="in_age">Vilken typ av arbetsgivaravgift avses?</label>
-            <br/>
-            <select id="in_age" style="">
+			</select> for age <select id="in_age" style="">
                 <option value="normal" selected="selected">normal</option>
                 <option value="ungdom">ungdom</option>
-                <option value="pensionär">pensionär</option>
-            </select> <span id="msg_age" class="msg">&nbsp;</span>
+                <option value="pensionär">pension&auml;r</option>
+            </select> living in <input class="text" id="in_parish" style="width:300px" type="text" value="VAKSALA, UPPSALA"/> who are 
+            <input id="in_church" type="checkbox"/> <label for="in_church">members of the Swedish church.</label>
         </p>
-		<p><button type="submit">Beräkna</button></p>
-	</form>
-	<p id="resultsp">
-		<strong>Resultat:</strong>
-		<span id="results">&nbsp;</span>
-	</p>
-	<table id="results_table" style="display:none">
-		<tr>
-			<th>Kommunalskatt</th>
-			<td><span id="kommun_amount">&nbsp;</span>
-				kr/mån
-			</td>
-		</tr>
-		<tr>
-			<th>Landstingsskatt</th>
-			<td><span id="landsting_amount">&nbsp;</span>
-			kr/mån</td>
-		</tr>
-		<tr>
-			<th>Statlig skatt</th>
-			<td><span id="stat_amount">&nbsp;</span>
-			kr/mån</td>
-		</tr>
-		<tr>
-		<th>Kyrkoavgift</th>
-			<td><span id="kyrka_amount">&nbsp;</span>
-			kr/mån</td>
-		</tr>
-		<tr>
-			<th>Jobbavdrag</th>
-			<td><span id="avdrag_amount">&nbsp;</span>
-			kr/mån</td>
-		</tr>
-		<tr>
-			<th>Total skatt</th>
-			<td><span id="skattesats_amount">&nbsp;</span>%</td>
-		</tr>
-	</table>
-</div>
-	<div id="placeholder" style="width:600px;height:300px;"></div>
-	<div id="placeholder2" style="width:600px;height:300px;"></div>
+		<div style="display:none">
+			<p>
+				<label for="in_salary">Vad har du i lön?</label><br/>
+				<input class="text" id="in_salary" style="" type="text" value="25000"/> kr/mån 
+			</p>
+			<p id="msg_salary" class="msg"/>
+			<p>
+				<label for="in_parish">Vilken församling bor du i?</label><br/>
+				
+			</p>
+			<p id="msg_parish" class="msg"/>
+			<p>
+				<label for="in_year">Vilket inkomstår?</label>
+				<span class="msg" id="msg_year">&nbsp;</span>
+			</p>
+			<p>
+				<input id="in_church" type="checkbox"/>
+				<!--input checked="checked" id="in_church" type="checkbox"/-->
+				<!--label for="in_church">Medlem i Svenska kyrkan</label-->
+			</p>
+	        <p>
+	            <label for="in_age">Vilken typ av arbetsgivaravgift avses?</label>
+	            <br/>
+	             <span id="msg_age" class="msg">&nbsp;</span>
+	        </p>
+			<p><button type="submit">Beräkna</button></p>
+		</form>
+		<p id="resultsp">
+			<strong>Resultat:</strong>
+			<span id="results">&nbsp;</span>
+		</p>
+		<table id="results_table" style="display:none">
+			<tr>
+				<th>Kommunalskatt</th>
+				<td><span id="kommun_amount">&nbsp;</span>
+					kr/mån
+				</td>
+			</tr>
+			<tr>
+				<th>Landstingsskatt</th>
+				<td><span id="landsting_amount">&nbsp;</span>
+				kr/mån</td>
+			</tr>
+			<tr>
+				<th>Statlig skatt</th>
+				<td><span id="stat_amount">&nbsp;</span>
+				kr/mån</td>
+			</tr>
+			<tr>
+			<th>Kyrkoavgift</th>
+				<td><span id="kyrka_amount">&nbsp;</span>
+				kr/mån</td>
+			</tr>
+			<tr>
+				<th>Jobbavdrag</th>
+				<td><span id="avdrag_amount">&nbsp;</span>
+				kr/mån</td>
+			</tr>
+			<tr>
+				<th>Total skatt</th>
+				<td><span id="skattesats_amount">&nbsp;</span>%</td>
+			</tr>
+		</table>
+	</div>
 	<script language="javascript" type="text/javascript" src="jquery.js"></script>
     <script language="javascript" type="text/javascript" src="jquery.flot.js"></script>
 	<script src="yui-min.js"></script>
@@ -89,6 +94,27 @@
 	<script type="text/javascript" src="salary.js"></script>
 	<script type="text/javascript" src="employmenttax.js"></script>
 	<script>
+		$('#in_year, #in_age, #in_church, #in_parish').change(function(){
+	         $(this).closest('form').trigger('submit');
+	    });
+	</script>
+    <script type="text/javascript">
+        YUI().use("autocomplete", "autocomplete-filters", "autocomplete-highlighters", function (a) {
+            a.one("body").addClass("yui3-skin-sam");
+            a.one("#in_parish").plug(a.Plugin.AutoComplete, {
+                resultFilters: function (d, c) {
+                    var b = new RegExp("[ -]" + d, "i");
+                    return a.Array.filter(c, function (e) {
+                        return b.test(" " + e.text)
+                    })
+                },
+                resultHighlighter: "phraseMatch",
+                source: parishes
+            })
+        });
+    </script>	
+	<script>
+	function plot() {
 		var d1 = [], d2 = [], d3 = [];
 		for (var k=0; k<60000; k+=100)
 		{
@@ -97,27 +123,26 @@
 			d2.push([k, k]);
 			d3.push([k, k+calculate2()]);
 		}
-		$.plot($("#placeholder"), [ { label: 'Employee\'s account', data:d1}, {label:'Salary', data:d2}, {label:'Employer cost', data:d3} ]);
-	</script>
-	<script>
+		$.plot($("#placeholder"), [ { label: 'Employee\'s account', data:d1}, {label:'Quoted salary', data:d2}, {label:'Employer cost', data:d3} ]);
+
+
 		var d4 = [];
 		var delta = 500;
-		for (var k=0; k<60000; k+=100)
+		for (var k=0; k<60000; k+=delta)
 		{
-			if (k > 10000 != k+delta>=10000)
-			{
-				//d4.push([k, null]);
-				continue;
-			}
 			$('#in_salary').val(''+k);
 			var a1 = calculate();
 			var b1 = k+calculate2();
 			$('#in_salary').val(''+(k+delta));
 			var a2 = calculate();
 			var b2 = k+delta+calculate2();
-			d4.push([k, (a2-a1)/(b2-b1)]);
+			var v = (a2-a1)/(b2-b1);
+			d4.push([k, v >= 1 ? null : v ]);
 		}
 		$.plot($("#placeholder2"), [ { label: 'added kr at employee\'s account per added 1 kr in employer cost', data:d4}]);
+	}
+
+	plot();
 	</script>
 </body>
 </html>
