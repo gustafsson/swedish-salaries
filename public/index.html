@@ -166,8 +166,8 @@
 			d5.push([k, v >= 1 ? null : v ]);
 		}
 		$.plot($("#placeholder2"),
-			[ { label: 'added kr at employee\'s account per added 1 kr in employer cost', data:d4},
-			  { label: 'added kr in quoted salary per added 1 kr in employer cost', data:d5}],
+			[ { label: 'd(employee\'s account) / d(employer cost)', data:d4},
+			  { label: 'd(quoted salary) / d(employer cost)', data:d5}],
 			options);
 	}
 
