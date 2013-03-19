@@ -145,8 +145,10 @@
 	    };
 
 		$.plot($("#placeholder"),
-			[ { label: 'Employee\'s account', data:d1}, {label:'Quoted salary', data:d2}, {label:'Employer cost', data:d3} ],
-			options);
+			[ {label: 'Employer cost', data:d3},
+			  {label: 'Quoted salary', data:d2},
+			  {label: 'Employee\'s account', data:d1}
+		    ], options);
 
 
 		var d4 = [];
@@ -166,8 +168,8 @@
 			d5.push([k, v >= 1 ? null : v ]);
 		}
 		$.plot($("#placeholder2"),
-			[ { label: 'd(employee\'s account) / d(employer cost)', data:d4},
-			  { label: 'd(quoted salary) / d(employer cost)', data:d5}],
+			[ { label: 'd(quoted salary) / d(employer cost)', data:d5},
+			  { label: 'd(employee\'s account) / d(employer cost)', data:d4}],
 			options);
 	}
 
