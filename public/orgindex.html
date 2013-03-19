@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="sv">
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Beräkna lön efter skatt</title>
+        <link href="//rakna.net/berakna/lon-efter-skatt/" rel="canonical"/>
+        <meta content="Beräkna lön efter skatt" property="og:title"/>
+        <meta content="Räkna.net" property="og:site_name"/>
+        <meta content="website" property="og:type"/>
+        <meta content="//rakna.net/berakna/lon-efter-skatt/" property="og:url"/>
+        <meta content="//rakna.net/img/share-icon.png" property="og:image"/>
+        <meta content="Beräkna lön efter skatt" itemprop="name">
+        <meta content="//rakna.net/img/share-icon.png" itemprop="image">
+        <link href="//rakna.net/favicon.ico" rel="shortcut icon"/>
+        <link href="//rakna.net/img/apple-touch-icon-144px.png" rel="apple-touch-icon" sizes="144x144"/>
+        <link href="//rakna.net/img/apple-touch-icon-114px.png" rel="apple-touch-icon" sizes="114x114"/>
+        <link href="//rakna.net/img/apple-touch-icon-72px.png" rel="apple-touch-icon" sizes="72x72"/>
+        <link href="//rakna.net/img/apple-touch-icon-57px.png" rel="apple-touch-icon" sizes="57x57"/>
+        <meta content="target-densitydpi=device-dpi, width=device-width, initial-scale=1" name="viewport">
+        <meta content="yes" name="apple-mobile-web-app-capable"/>
+        <link href="/css/main.css" rel="stylesheet" type="text/css"/><!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="/css/ie7.css"/><![endif]-->
+        <script type="text/javascript">
+            window.google_analytics_uacct = "UA-287652-7";
+            var _gaq = _gaq || [];
+            _gaq.push([
+                "_setAccount", "UA-287652-7"
+            ]);
+            _gaq.push(["_trackPageview"]);
+            (function () {
+                var b = document.createElement("script");
+                b.type = "text/javascript";
+                b.async = true;
+                b.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+                var a = document.getElementsByTagName("script")[0];
+                a.parentNode.insertBefore(b, a)
+            })();
+        </script>
+    </head>
+    <body class="calculator">
+        <div id="fb-root"></div>
+        <script>
+            (function (e, a, f) {
+                var c,
+                    b = e.getElementsByTagName(a)[0];
+                if (e.getElementById(f)) {
+                    return
+                }
+                c = e.createElement(a);
+                c.id = f;
+                c.src = "//connect.facebook.net/sv_SE/all.js#xfbml=1&appId=278508998884850";
+                b.parentNode.insertBefore(c, b)
+            }(document, "script", "facebook-jssdk"));
+        </script>
+        <div id="hd-outer">
+            <div id="hd">
+                <div class="yui3-g">
+                    <div class="yui3-u">
+                        <h2>
+                            <a href="/" rel="home">
+                                <img alt="Räkna.net" height="51" src="//rakna.net/img/logotype.png" width="326"/>
+                            </a>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="wrapper">
+            <div class="roundedbox" id="main">
+                <!-- google_ad_section_start -->
+                <h1 itemprop="headline">Beräkna lön efter skatt</h1>
+                <p id="lastchange">Sidan uppdaterades senast
+                    <time class="lastchangedate" datetime="2012-02-18" itemprop="dateModified">2012-02-18</time></p>
+                <div itemprop="articleBody">
+                    <p>Beräkna hur mycket pengar du får behålla av din lön varje månad och
+                        hur mycket du betalar i inkomstskatt.</p>
+                    <div class="ads rectangle" id="top_ads">
+                        <script type="text/javascript">
+                            google_ad_client = "ca-pub-2349680597420758";
+                            google_ad_slot = "3189952177";
+                            google_ad_width = 336;
+                            google_ad_height = 280;
+                        </script>
+                        <script type="text/javascript" src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+                        </script>
+                    </div>
+                    <form onsubmit="calculate(); _gaq.push(['_trackEvent', 'Calculators', 'Calculate']); return false;">
+                        <p><label for="in_salary">Vad har du i lön?</label><br/><input class="text" id="in_salary" style="" type="text" value="25000"/>
+                            kr/mån 
+                        </p><p id="msg_salary" class="msg"/>
+                        <p><label for="in_parish">Vilken församling bor du i?</label><br/><input class="text" id="in_parish" style="width:300px" type="text" value=""/>
+                        </p><p id="msg_parish" class="msg"/>
+                        <p><label for="in_year">Vilket inkomstår?</label><br/><select id="in_year" style="">
+                                <option selected="selected" value="2013">2013</option><option value="2012">2012</option><option value="2011">2011</option></select>
+                            <span class="msg" id="msg_year">&nbsp;</span></p>
+                        <p><input checked="checked" id="in_church" type="checkbox"/>
+                            <label for="in_church">Medlem i Svenska kyrkan</label></p>
+                        <p><button type="submit">Beräkna</button></p>
+                    </form>
+                    <p id="resultsp">
+                        <strong>Resultat:</strong>
+                        <span id="results">&nbsp;</span>
+                    </p>
+                    <table id="results_table" style="display:none">
+                        <tr>
+                            <th>Kommunalskatt</th>
+                            <td><span id="kommun_amount">&nbsp;</span>
+                                kr/mån</td>
+                        </tr>
+                        <tr>
+                            <th>Landstingsskatt</th>
+                            <td><span id="landsting_amount">&nbsp;</span>
+                                kr/mån</td>
+                        </tr>
+                        <tr>
+                            <th>Statlig skatt</th>
+                            <td><span id="stat_amount">&nbsp;</span>
+                                kr/mån</td>
+                        </tr>
+                        <tr>
+                            <th>Kyrkoavgift</th>
+                            <td><span id="kyrka_amount">&nbsp;</span>
+                                kr/mån</td>
+                        </tr>
+                        <tr>
+                            <th>Jobbavdrag</th>
+                            <td><span id="avdrag_amount">&nbsp;</span>
+                                kr/mån</td>
+                        </tr>
+                        <tr>
+                            <th>Total skatt</th>
+                            <td><span id="skattesats_amount">&nbsp;</span>%</td>
+                        </tr>
+                    </table>
+                    <div class="ads leaderboard" id="below_ads">
+                        <script type="text/javascript">
+                            google_ad_client = "ca-pub-2349680597420758";
+                            google_ad_slot = "6143418570";
+                            google_ad_width = 728;
+                            google_ad_height = 90;
+                        </script>
+                        <script type="text/javascript" src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+                        </script>
+                    </div>
+                    <p>Din arbetsgivare använder vanligtvis en tabell från Skatteverket för
+                        att beräkna den preliminära skatt som ska dras från din lön varje månad.
+                        Vid deklarationen beräknas sedan din slutgiltiga skatt, som påverkas av
+                        exempelvis ränteavdrag, försäljning av värdepapper och fastigheter.</p>
+                    <p>Beräkningen av
+                        <strong>jobbavdrag</strong>
+                        (kallas även jobbskatteavdrag) gäller endast för dem som är yngre än 65
+                        år och som har en månadslön över c:a 9000 kr.</p>
+                    <p>Med begreppet
+                        <strong>kyrkoavgift</strong>
+                        ovan menas avgift till Svenska kyrkan samt begravningsavgift. Även om du
+                        inte är medlem i Svenska kyrkan, måste du betala
+                        begravningsavgiften.</p>
+                    <p><strong>Statlig skatt</strong>
+                        betalas av de som beräknas tjäna över en viss summa per år. Under 2012
+                    motsvarar den gränsen en månadslön på 34500 kr. På inkomster över denna
+                    summa är den statliga skatten 20% och på inkomster över 48900 kr är den
+                    statliga skatten 25%.
+                        <a href="//www.skatteverket.se/svarpavanligafragor/privat/beloppochprocent/privatbeloppfaq/narskamanbetalastatliginkomstskattochhurhogarden.5.10010ec103545f243e8000166.html">Läs
+                            mer på Skatteverkets webbplats.</a></p>
+                    <hr/>
+                    <p><strong>Liknande räknare:</strong>
+                        <a href="/berakna/foraldrapenning/">räkna ut föräldrapenning</a>,
+                        <a href="/berakna/a-kassa/">beräkna a-kassa</a>,
+                        <a href="/berakna/arbetsgivaravgift/">beräkna arbetsgivaravgift</a></p>
+                    <script src="//yui.yahooapis.com/3.4.1/build/yui/yui-min.js"></script>
+                    <script type="text/javascript" src="/js/common.js"></script>
+                    <script type="text/javascript" src="/js/parishes.js"></script>
+                    <script type="text/javascript" src="/js/salary.js"></script>
+                    <script type="text/javascript">
+                        YUI().use("autocomplete", "autocomplete-filters", "autocomplete-highlighters", function (a) {
+                            a.one("body").addClass("yui3-skin-sam");
+                            a.one("#in_parish").plug(a.Plugin.AutoComplete, {
+                                resultFilters: function (d, c) {
+                                    var b = new RegExp("[ -]" + d, "i");
+                                    return a.Array.filter(c, function (e) {
+                                        return b.test(" " + e.text)
+                                    })
+                                },
+                                resultHighlighter: "phraseMatch",
+                                source: parishes
+                            })
+                        });
+                    </script>
+                </div>
+                <!-- google_ad_section_end -->
+                <hr/>
+                <div class="facebook-like">
+                    <div class="fb-like-box" data-header="true" data-height="360" data-href="//www.facebook.com/rakna.net" data-show-faces="true" data-stream="false" data-width="292"></div>
+                </div>
+                <div class="ads high_rectangle">
+                    <a href="//click.adrecord.com/?p=179&c=7580&g=1438" rel="nofollow"><img src="//graphics.adrecord.com/179/smartbudget-1438.jpg"/></a><img src="//graphics.adrecord.com/?p=179&c=7580&g=1438&q=1"/>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div id="ft">
+                <!-- google_ad_section_start(weight=ignore) -->
+                <p>
+                    <a href="/om/">Om Räkna.net</a>
+                    &#183; 
+                    <a href="/faq/">FAQ</a>
+                    &#183; 
+                    <a href="/annonsera/">Annonsörinfo</a>
+                    &#183; 
+                    <a href="/villkor/">Villkor och integritet</a>
+                    &#183; 
+                    <a href="//raknanet.uservoice.com/forums/121321-r%C3%A4kna-net" target="_blank">Feedback</a>
+                </p>
+                <!-- google_ad_section_end -->
+            </div>
+        </div>
+        <script type="text/javascript">
+            var uvOptions = {};
+            (function () {
+                var b = document.createElement("script");
+                b.type = "text/javascript";
+                b.async = true;
+                b.src = ("https:" == document.location.protocol ? "https://" : "http://") + "widget.uservoice.com/MBl4IsCCcpU8YsgqLn8g.js";
+                var a = document.getElementsByTagName("script")[0];
+                a.parentNode.insertBefore(b, a)
+            })();
+        </script>
+    </body>
+</html>

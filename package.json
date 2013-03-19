@@ -1,0 +1,17 @@
+{
+  "name": "swedish-salaries",
+  "version": "0.0.1",
+
+  "description": "Playground",
+
+  "dependencies": {
+    "async":     "0.1.18",
+    "ejs":       "0.4.3",
+    "express":   "2.4.6"
+  },
+
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.1.x"
+  }
+}
