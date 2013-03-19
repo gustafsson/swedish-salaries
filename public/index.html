@@ -150,6 +150,7 @@
 
 
 		var d4 = [];
+		var d5 = [];
 		var delta = 500;
 		for (var k=0; k<maxsalary; k+=dk)
 		{
@@ -161,9 +162,12 @@
 			var b2 = k+delta+calculate2();
 			var v = (a2-a1)/(b2-b1);
 			d4.push([k, v >= 1 ? null : v ]);
+			v = (delta)/(b2-b1);
+			d5.push([k, v >= 1 ? null : v ]);
 		}
 		$.plot($("#placeholder2"),
-			[ { label: 'marginal wage (added kr at employee\'s account per added 1 kr in employer cost)', data:d4}],
+			[ { label: 'added kr at employee\'s account per added 1 kr in employer cost', data:d4},
+			  { label: 'added kr in quoted salary added 1 kr in employer cost', data:d5}],
 			options);
 	}
 
