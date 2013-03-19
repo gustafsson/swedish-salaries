@@ -97,7 +97,7 @@
 			d2.push([k, k]);
 			d3.push([k, k+calculate2()]);
 		}
-		$.plot($("#placeholder"), [ { label: 'Employees account', data:d1}, {label:'Salary', data:d2}, {label:'Employer cost', data:d3} ]);
+		$.plot($("#placeholder"), [ { label: 'Employee\'s account', data:d1}, {label:'Salary', data:d2}, {label:'Employer cost', data:d3} ]);
 	</script>
 	<script>
 		var d4 = [];
@@ -117,7 +117,7 @@
 			var b2 = k+delta+calculate2();
 			d4.push([k, (a2-a1)/(b2-b1)]);
 		}
-		$.plot($("#placeholder2"), [ { label: 'kr at employees account per added kr in employer cost', data:d4}]);
+		$.plot($("#placeholder2"), [ { label: 'added kr at employee\'s account per added 1 kr in employer cost', data:d4}]);
 	</script>
 </body>
 </html>
