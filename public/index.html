@@ -18,8 +18,8 @@
                 <option value="normal" selected="selected">normal</option>
                 <option value="ungdom">ungdom</option>
                 <option value="pensionär">pension&auml;r</option>
-            </select> living in <input class="text" id="in_parish" style="width:300px" type="text" value="VAKSALA, UPPSALA"/> who are 
-            <input id="in_church" type="checkbox"/> <label for="in_church">members of the Swedish church.</label>
+            </select> living in <input class="text" id="in_parish" style="width:200px" type="text" value="VAKSALA, UPPSALA"/> who are 
+            <input id="in_church" type="checkbox"/> <label for="in_church">members of the Swedish church.</label> Computed up to <input class="text" id="in_maxsalary" style="width:100px" type="text" value="60000"/> kr/month.
         </p>
 		<div style="display:none">
 			<p>
@@ -95,7 +95,7 @@
 	<script type="text/javascript" src="salary.js"></script>
 	<script type="text/javascript" src="employmenttax.js"></script>
 	<script>
-		$('#in_year, #in_age, #in_church, #in_parish').change(function(){
+		$('#in_year, #in_age, #in_church, #in_parish, #in_maxsalary').change(function(){
 	         $(this).closest('form').trigger('submit');
 	    });
 	</script>
@@ -116,8 +116,18 @@
     </script>	
 	<script>
 	function plot() {
+		var maxsalary = parseFloat($('#in_maxsalary').val());
+		console.log('maxsalary = ' + maxsalary);
+		if (isNaN(maxsalary) || maxsalary < 4000)
+		{
+			maxsalary = 4000;
+			$('#in_maxsalary').val(maxsalary);
+		}
+
+		var dk = Math.max(500, maxsalary/1000);
+
 		var d1 = [], d2 = [], d3 = [];
-		for (var k=0; k<60000; k+=100)
+		for (var k=0; k<maxsalary; k+=dk)
 		{
 			$('#in_salary').val(''+k);
 			d1.push([k, calculate()]);
@@ -141,7 +151,7 @@
 
 		var d4 = [];
 		var delta = 500;
-		for (var k=0; k<60000; k+=delta)
+		for (var k=0; k<maxsalary; k+=dk)
 		{
 			$('#in_salary').val(''+k);
 			var a1 = calculate();
